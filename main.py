@@ -1,60 +1,59 @@
-#   a115_robot_maze.py
+#   a123_apple_1.py
 import turtle as trtl
+import random as rand
+#-----setup-----
+apple_image = "pear.gif" # Store the file name of your shape
 
-#----- maze and turtle config variables
-screen_h = 400
-screen_w = 420
-startx = -100
-starty = -100
-turtle_scale = 1.5
-
-#------ robot commands
-def move():
-  robot.dot(10)
-  robot.fd(50)
-
-def turn_left():
-  robot.speed(0)
-  robot.lt(90)
-  robot.speed(2)
-
-#----- init screen
 wn = trtl.Screen()
-wn.setup(width=screen_w, height=screen_h)
-robot_image = "robot.gif"
-wn.addshape(robot_image)
-
-#----- init robot
-robot = trtl.Turtle(shape=robot_image)
-robot.hideturtle()
-robot.color("darkorchid")
-robot.pencolor("darkorchid")
-robot.penup()
-robot.setheading(90)
-robot.turtlesize(turtle_scale, turtle_scale)
-robot.goto(startx, starty)
-robot.speed(2)
-robot.showturtle()
-
-#---- TODO: change maze here
-wn.bgpic("maze1.png") # other file names should be maze2.png, maze3.png
-
-#---- TODO: begin robot movement here
-# move robot forward with move()
-# turn robot left with turn_left()
-# sample for loop:
-
-for step in range(4): # forward 3
-  move()
-
-for step in range(3):
-  turn_left()
-
-for step in range(4): # forward 3
-  move()
+wn.setup(width=1.0, height=1.0)
+wn.addshape(apple_image) # Make the screen aware of the new file
+wn.bgpic("background.gif")
+drawer = trtl.Turtle()
+drawer.hideturtle()
+drawer.penup()
+drawer.goto(-250,300)
+letters = ["a","s","d","f","g","h","j","k","l"]
+pears = []
 
 
 
-#---- end robot movement 
 
+
+#-----functions-----
+# given a turtle, set that turtle to be shaped by the image file
+def draw_apple(active_apple):
+  active_apple.shape(apple_image)
+  wn.update()
+
+
+for step in range(5):
+  apple = trtl.Turtle()
+  pears.append(apple)
+  draw_apple(apple)
+  apple.penup()
+  apple.goto(rand.randint(-150,150),rand.randint(0,150))
+  
+
+popped = letters.pop(rand.randint(0,8))
+print(popped)
+
+
+
+
+def draw_an_A():
+  drawer.color("blue")
+  drawer.write(popped, font=("Arial", 74, "bold"))
+
+def drop():
+  draw_an_A()
+  orange =pears.pop(rand.randint(0,4))
+  xcor=orange.xcor()
+  orange.goto(xcor,-150)
+  drawer.clear()
+
+wn.onkeypress(drop, popped)
+#-----function calls-----
+
+  
+wn.listen()
 wn.mainloop()
