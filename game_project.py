@@ -1,3 +1,5 @@
+#Emmet
+
 #import statements
 import turtle as trtl
 import random as rand
@@ -22,6 +24,7 @@ counter.hideturtle()
 counter.penup()
 counter.goto(200,250)
 
+#Jackson
 #timer
 timer = 30
 counter_interval=1000
@@ -37,7 +40,7 @@ sc.write("Score: " +str(score),font=font_setup)
 bullet_fired=[]
 barrier_shot=[]
 
-
+#Emmet
 #ship setup
 def turn_left():
     turn_left=ship.left(2)
@@ -50,14 +53,14 @@ wn.onkeypress(turn_right,"d")
 wn.listen()
 ship_alive=True
 
-
+#Emmet
 #funcitons
 def update_score():
     global score
     score += 1 
     sc.clear()
     (sc.write("Score: " +str(score),font=font_setup))
-
+#Emmet and Jackson
 def shoot():
     global bullet
     bullet=trtl.Turtle()
@@ -75,7 +78,7 @@ def shoot():
     bullet.hideturtle()
     bullet.clear()
 
-
+#Jackson
 def countdown():
     global timer, timer_up
     counter.clear()
@@ -87,7 +90,7 @@ def countdown():
         counter.write("timer: " + str(timer), font=font_setup)
         timer-=1
         counter.getscreen().ontimer(countdown, counter_interval)
-
+#Jackson
 def bar_g():
     for step in range(100):
         barrier.penup()
@@ -103,7 +106,7 @@ def bar_g():
 
 
 
-
+#Emmet
 #events
 wn.ontimer(countdown, counter_interval)
 wn.onkey(shoot,"w")
